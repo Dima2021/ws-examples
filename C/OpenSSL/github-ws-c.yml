@@ -1,0 +1,29 @@
+# This workflow will scan a C project with WhiteSource’s newest source files matching algorithm (powered by a machine learning engine).
+
+name: Whitesource SmartMatch C project
+
+on:
+  push:
+    branches: [ C project ]
+#  pull_request:
+#    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+    - name: WhiteSource Unified Agent Scan
+      env:
+        APIKEY: ${{secrets.APIKEY}}
+      run: |
+        curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
+        echo UA downloaded successfully
+        export WS_RESOLVEALLDEPENDENCIES=false
+        java -jar wss-unified-agent.jar -d ./ -apikey $APIKEY -product GH_${{ github.event.repository.name }} -project ${{ github.ref }}_Prioritize
