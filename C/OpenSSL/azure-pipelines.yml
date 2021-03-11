@@ -1,7 +1,7 @@
 name: 'whitesource-ua-azdo-c'
 
 trigger:
-- OpenSSL_1_1_1h
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
