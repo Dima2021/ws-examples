@@ -26,4 +26,4 @@ jobs:
         curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar
         echo UA downloaded successfully
         export WS_RESOLVEALLDEPENDENCIES=false
-        java -jar wss-unified-agent.jar -d ./ -apikey $APIKEY -product GH_${{ github.event.repository.name }} -project ${{ github.ref }}_Prioritize
+        java -jar wss-unified-agent.jar -d ./ -apikey $APIKEY -product GH_${{ github.event.repository.name }} -project ${{ github.ref }}
